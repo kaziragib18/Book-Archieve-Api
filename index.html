@@ -22,24 +22,30 @@
 
 <body>
     <section class="container my-2">
-        <h2 class="text-center fst-italic fs-5 m-2 p-3">Welcome To The Book Archive</h2>
+        <h2 class="text-center fst-italic fw-bold fs-5 m-2 p-3">Welcome To The <span class="text-danger">Book Archive</span></h2>
+
         <!-- Input Box -->
         <div class="d-flex">
             <input id="search-input" type="text" class="form-control me-2" placeholder="Search your book from here" />
-
             <button id="search-btn" class="btn btn-dark">Search</button>
         </div>
+
+         <!-- Error message field -->
+         <div id="error" class="text-danger text-center font-monospace p-2"></div>
     </section>
+
     <section class="container">
         <hr />
+        <!-- Result details div -->
+        <div id="result" class="text-center fs-5 text-info fw-bold p-2 m-2"></div>
     </section>
+
     <section class="container mt-2">
-        <div id="error" class="text-danger font-monospace "></div>
         <!-- Book -->
         <div id="book-container" class="row">
-        </div>
-        <!-- book div -->
-        <!--<div class="rounded overflow-hidden border p-2">
+
+            <!-- book div -->
+            <!--<div class="rounded overflow-hidden border p-2">
             <img src="#" class="w-100 img-fluid" alt=""/>
                 <div class="py-2 d-flex justify-content-between align-items-center d-md-block">
                     <h5 class="card-title text-success fst-italic fs-5 pt-2">title</h5>
@@ -47,10 +53,9 @@
                     <h5 class="card-title font-monospace fs-6 fw-bold pt-2">Published</h5>
                 </div>
             </div>-->
-        <!-- book div -->
-   
+            <!-- book div -->
     </section>
-   <script src="main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
