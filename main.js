@@ -1,54 +1,62 @@
-const errorDiv = document.getElementById('error-message');
-errorDiv.style.display = 'none';
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const bookContainer = document.getElementById('book-container');
+const errorDiv = document.getElementById('error');
 
-const searchBook = () => {
-    const searchField = document.getElementById('search-field');
-    const searchText = searchField.value;
-    // clear data
-    searchField.value = '';
-    errorDiv.style.display = 'none';
-    // console.log(url);
+
+searchBtn.addEventListener('click', function () {
+    const searchText = searchInput.value;
+
     if (searchText === '') {
-        errorDiv.innerText = 'Search field can not be empty'
+        errorDiv.innerText = 'Search field can not be empty!'
+    }
+    //clear when new search/dom
+    bookContainer.innerHTML = '';
+    searchInput.value = '';
+    const url = `http://openlibrary.org/search.json?q=${searchText}`;
+    console.log(searchText);
+
+    
+    fetch(url)
+        .then((res) => res.json())
+        .then((data) => showData(data.docs));
+    // .finally(() => {
+    //   searchInput.value === '';
+    // });
+});
+
+function showData(bookArray) {
+    //clear error messege / error handling
+    //network response tab status/messege check
+    if (bookArray.num_found === 0) {
+        errorDiv.innerText = 'No Result Found!';
     }
     else {
-        const url = `http://openlibrary.org/search.json?q=${searchText}`;
-        fetch(url)
-            .then(res => res.json())
-            .then(data => displaySearchResult(data.docs));
-        // .catch(error => displayError(error));
+        errorDiv.innerText = '';
     }
-}
-const displayError = error => {
-   errorDiv.style.display = 'block';
-}
 
-const displaySearchResult = docs => {
-    // console.log(docs);
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
-    if (docs.length == 0) {
-        //no result
-    }
-    docs.forEach(book => {
+    bookArray.forEach((book) => {
         console.log(book);
-        const div = document.createElement('div');
-        div.classList.add('col');
-        //image api link concat
+        const div = document.createElement("div");
+        div.classList.add("col-md-3");
+
         const imageUrl = "https://covers.openlibrary.org/b/id/" + book.cover_i + '-M.jpg'
         console.log(imageUrl);
 
         div.innerHTML = `
-        <div class="card h-100">
-            <img src="${imageUrl}" class="card-img-top img-fluid w-100 " alt="...">
-            <div class="card-body">
-                <h5 class="card-title fst-italic fs-5 pt-2">${book.title}</h5>
-                <h4 class="card-title font-monospace fw-bold fs-6 pt-2">Author: ${book.author_name}</h4>
-                <h5 class="card-text font-monospace fs-6 pt-2">Publisher: ${book.publisher} </5>
-                <h5 class="card-title font-monospace fs-6 pt-2">Publish: ${book.first_publish_year}</h5>
+      <!-- Image -->
+        <div class="rounded overflow-hidden border border-1 p-2">
+            <img src="${imageUrl}" class="w-100 img-fluid" alt=""/>
+            <!-- Body -->
+            <div class="py-2 d-flex justify-content-between align-items-center d-md-block">
+                <h5 class="card-title text-success fst-italic fs-5 pt-2">${book.title}</h5>
+                <h4 class="card-title text-danger font-monospace fw-bold fs-6 pt-2">Author: ${book.author_name}</h4>
+                
+                <h5 class="card-title font-monospace fs-6 fw-bold pt-2">Published: ${book.publish_year}</h5>
             </div>
         </div>
-        `;
-        searchResult.appendChild(div);
-    })
+      `;
+        bookContainer.appendChild(div);
+    });
 }
+

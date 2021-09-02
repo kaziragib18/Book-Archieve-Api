@@ -2,36 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Archive</title>
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+
+    <style>
+        /* Fonts */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+
+        * {
+            font-family: "Poppins", sans-serif;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
-    <h2 class="text-center text-danger pt-4 ">Welcome To The Book Archive</h2>
-    <!-- book search area -->
-    <div class="input-group mb-3 w-50 mx-auto pt-2">
-        <input id="search-field" type="text" class="form-control" placeholder="Search your favourite book"
-            aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchBook()" class="btn btn-outline-secondary" type="button"
-            id="button-search">search</button>
-    </div>
-    <!-- Error message for no result -->
-    <div>
-        <p id="error-message" class=" text-danger text-center">Something went wrong please try again later</p>
-    </div>
+<body>
+    <section class="container my-2">
+        <h2 class="text-center fst-italic fs-5 m-2 p-3">Welcome To The Book Archive</h2>
+        <!-- Input Box -->
+        <div class="d-flex">
+            <input id="search-input" type="text" class="form-control me-2" placeholder="Search your book from here" />
 
-    <!-- book search result -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 p-5">
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
-        
+            <button id="search-btn" class="btn btn-dark">Search</button>
+        </div>
+    </section>
+    <section class="container">
+        <hr />
+    </section>
+    <section class="container mt-2">
+        <div id="error" class="text-danger font-monospace "></div>
+        <!-- Book -->
+        <div id="book-container" class="row">
+        </div>
+        <!-- book div -->
+        <!--<div class="rounded overflow-hidden border p-2">
+            <img src="#" class="w-100 img-fluid" alt=""/>
+                <div class="py-2 d-flex justify-content-between align-items-center d-md-block">
+                    <h5 class="card-title text-success fst-italic fs-5 pt-2">title</h5>
+                    <h4 class="card-title text-danger font-monospace fw-bold fs-6 pt-2">Author</h4>
+                    <h5 class="card-title font-monospace fs-6 fw-bold pt-2">Published</h5>
+                </div>
+            </div>-->
+        <!-- book div -->
+   
+    </section>
    <script src="main.js"></script>
 </body>
 
