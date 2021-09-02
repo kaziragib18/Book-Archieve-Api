@@ -12,15 +12,15 @@ searchBtn.addEventListener('click', function () {
         errorDiv.innerText = 'Search field can not be empty!'
     }
     //if searchfield constains special caratcters then
-    else if (searchText.includes('$') || searchText.includes('!') || searchText.includes('#') || searchText.includes('`') || searchText.includes('/')|| searchText.includes('+') || searchText.includes('=') || searchText.includes('-') || searchText.includes(';')
-    || searchText.includes('.')) {
+    else if (searchText.includes('$') || searchText.includes('!') || searchText.includes('#') || searchText.includes('`') || searchText.includes('/') || searchText.includes('+') || searchText.includes('=') || searchText.includes('-') || searchText.includes(';')
+        || searchText.includes('.')) {
 
         errorDiv.innerText = 'No Result Found!'
     }
     else {
         bookContainer.innerHTML = '';
         searchInput.value = '';
-        const url = `http://openlibrary.org/search.json?q=${searchText}`;
+        const url = `https://openlibrary.org/search.json?q=${searchText}`;
         // console.log(searchText);
         // console.log(url);
 
@@ -35,6 +35,7 @@ searchBtn.addEventListener('click', function () {
     }
     //clear when new search/dom
     bookContainer.innerHTML = '';
+    resultDetails.innerHTML = '';
     searchInput.value = '';
 });
 
@@ -78,6 +79,7 @@ function viewResultDetails(bookArray) {
     resultDetails.innerHTML = `
                 Number of Result found: ${bookArray.numFound}
               `;
+            //resultDetails.innerHTML = '';
     // });
 }
 
